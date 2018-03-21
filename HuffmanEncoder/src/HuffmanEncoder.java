@@ -80,7 +80,30 @@ public class HuffmanEncoder {
     }
 
     public String decompress(final HuffmanEncodedResult result){
-        return null;
+
+        final StringBuilder resultBuilder = new StringBuilder();
+        Node current = result.getRoot();
+        int i = 0;
+
+        while(i < result.getEncodedData().length()){
+
+            while(!current.isLeaf()){
+                char bit = result.getEncodedData().charAt(i);
+                if(bit == '1'){
+                    current = current.rightChild;
+                }else if (bit == '0'){
+                    current = current.leftChild;
+                }else{
+                    throw new IllegalArgumentException("Invalid bit! " + bit);
+                }
+                i++;
+            }
+            resultBuilder.append(current.character);
+            current = result.getRoot();
+
+        }
+
+        return resultBuilder.toString();
     }
 
     static class Node implements Comparable<Node>{
@@ -121,14 +144,26 @@ public class HuffmanEncoder {
             this.root = root;
         }
 
+        public Node getRoot(){
+            return this.root;
+        }
+
+        public String getEncodedData(){
+            return this.encodedData;
+        }
+
     }
 
     public static void main(String[] args){
-        final String test = "abcdeffg";
-        final int[] ft = buildFrequencyTable(test);
-        final Node n = buildHuffmanTree(ft);
-        final Map<Character, String> lookup = buildLookupTable(n);
-        System.out.println(n);
+        final String test = "hello world! wtf is this madness";
+        final HuffmanEncoder encoder = new HuffmanEncoder();
+        final HuffmanEncodedResult result = encoder.compress(test);
+//        final int[] ft = buildFrequencyTable(test);
+//        final Node n = buildHuffmanTree(ft);
+//        final Map<Character, String> lookup = buildLookupTable(n);
+
+        System.out.println(result.encodedData);
+        System.out.println(encoder.decompress(result));
     }
 
 }
