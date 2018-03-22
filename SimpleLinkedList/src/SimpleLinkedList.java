@@ -135,7 +135,7 @@ public class SimpleLinkedList<E> {
         linkedList.add("when");
         linkedList.add("ok");
 
-        linkedList.delete(0);
+        linkedList.delete(3);
 
         System.out.println(linkedList);
 
