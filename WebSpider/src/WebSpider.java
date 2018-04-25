@@ -55,7 +55,7 @@ public class WebSpider {
 
     public static void main(String[] args) throws IOException{
 
-        final WebSpider spider = new WebSpider(new URL("http://www.jack.caseyjohnson1989.com/"));
+        final WebSpider spider = new WebSpider(new URL("https://www.youtube.com/"));
 
         System.out.print("done");
         System.out.print("done");
