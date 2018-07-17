@@ -7,6 +7,7 @@ public class Main {
     public static void main(String [] args)
     {
 
+
         double db = 0.0000090000090788912412412422353141242412;
 
         String[] split = Double.toString(db).split("E");
@@ -25,7 +26,7 @@ public class Main {
         ExecutorService es = Executors.newFixedThreadPool(6);
         BankAccount account = new BankAccount(100);
 
-        for(int i = 0; i < 99; i++) {
+        for(int i = 0; i < 9; i++) {
             Worker worker = new Worker(account);
             es.submit(worker);
         }
@@ -46,6 +47,27 @@ public class Main {
         Calculator cal = new Calculator();
         int result = cal.evalute("1 + 2 + 10 * 2");
         System.out.println(result);
+
+
+
+
+
+
+
+        ////TEST ABSTRACT
+        RegularClass r = new RegularClass();
+        System.out.println("\n\nAbstract/Interface testing  \n\n");
+        r.implementMe();
+        r.printImplement();
+        System.out.println("You can also call default interface methods from inherited class level but not static");
+        r.printDefault();
+
+
+    }
+
+    //static block always runs when class is created
+    static {
+        System.out.println("Main static block");
     }
 
 
