@@ -42,6 +42,7 @@ public class TSPChromosome {
             total += this.chromosome.get(i).distance(this.chromosome.get(i+1));
         }
         //System.out.println(total);
+        total += this.chromosome.get(0).distance(this.chromosome.get(this.chromosome.size()-1));
         return total;
     }
 
@@ -113,7 +114,7 @@ public class TSPChromosome {
         Collections.swap(copy, indexA, indexB);
 
 
-        if(TSPUtils.randomIndex(10) > 5){
+        if(TSPUtils.randomIndex(10) > 7){
 
             indexA = TSPUtils.randomIndex(copy.size());
             indexB = TSPUtils.randomIndex(copy.size());
@@ -124,7 +125,7 @@ public class TSPChromosome {
             Collections.swap(copy, indexA, indexB);
 
 
-            if(TSPUtils.randomIndex(10) > 5){
+            if(TSPUtils.randomIndex(10) > 7){
 
                 indexA = TSPUtils.randomIndex(copy.size());
                 indexB = TSPUtils.randomIndex(copy.size());
@@ -135,7 +136,7 @@ public class TSPChromosome {
                 Collections.swap(copy, indexA, indexB);
 
 
-                if(TSPUtils.randomIndex(10) > 5){
+                if(TSPUtils.randomIndex(10) > 7){
 
                     indexA = TSPUtils.randomIndex(copy.size());
                     indexB = TSPUtils.randomIndex(copy.size());

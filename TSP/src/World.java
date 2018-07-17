@@ -4,7 +4,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class World extends JPanel{
 
-    private final TSPPopulation population;
+    //private final TSPPopulation population;
+    private final TSPPopulationThread population;
     private final AtomicInteger generation;
     //private volatile AtomicInteger generation;
 
@@ -17,7 +18,8 @@ public class World extends JPanel{
 
         //CREATE A POPULATION
         //PASSING AN ARRAY OF GENES WITH RANDOM POINTS AND A SIZE
-        this.population = new TSPPopulation(TSPUtils.CITIES, 1000);
+        //this.population = new TSPPopulation(TSPUtils.CITIES, 1000);
+        this.population = new TSPPopulationThread(TSPUtils.CITIES, 1000);
 
         this.generation = new AtomicInteger(0);
 
@@ -46,11 +48,17 @@ public class World extends JPanel{
     private void drawBestChromosome(Graphics g) {
         final java.util.List<TSPGene> chromosome = this.population.getAlpha().getChromosome();
         g.setColor(Color.WHITE);
+
         for(int i = 0; i < chromosome.size() - 1; i++){
             TSPGene gene = chromosome.get(i);
             TSPGene neighbor = chromosome.get(i + 1);
             g.drawLine(gene.getX(), gene.getY(), neighbor.getX(), neighbor.getY());
         }
+
+        TSPGene start = chromosome.get(0);
+        TSPGene end = chromosome.get(chromosome.size()-1);
+        g.drawLine(start.getX(), start.getY(), end.getX(), end.getY());
+
         g.setColor(Color.RED);
         for(final TSPGene gene: chromosome){
             g.fillOval(gene.getX(), gene.getY(), 5, 5);
