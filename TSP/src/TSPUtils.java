@@ -8,7 +8,7 @@ public class TSPUtils {
     private final static Random R = new Random(10000);
 
     //INITIAL AMOUNT OF CITIES
-    public static final TSPGene[] CITIES = generateData(40);
+    public static final TSPGene[] CITIES = generateData(20);
 
     private TSPUtils(){
         throw new RuntimeException("Can't make this class!");

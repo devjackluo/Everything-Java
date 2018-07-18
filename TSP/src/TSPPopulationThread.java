@@ -26,7 +26,7 @@ public class TSPPopulationThread {
 
     private List<TSPChromosome> init(final TSPGene[] points, final int initialSize) {
 
-        ExecutorService es = Executors.newFixedThreadPool(12);
+        ExecutorService es = Executors.newFixedThreadPool(100);
 
         //CREATE A LIST OF CHROMOSOMES OF INITIALSIZE
         final List<TSPChromosome> eden = new ArrayList<>();
@@ -35,7 +35,7 @@ public class TSPPopulationThread {
             //EACH CHROMOSOME GETS SAME INIT GENES
             //THEN IT GETS SHUFFLED
 
-            es.submit(() -> {
+            es.execute(() -> {
 
                 final TSPChromosome chromosome = TSPChromosome.create(points);
 
@@ -84,9 +84,9 @@ public class TSPPopulationThread {
 
     private void doSpawn() {
         //ADD 1000 RANDOM CHROMOSOMES TO POPULATION
-        ExecutorService es = Executors.newFixedThreadPool(12);
+        ExecutorService es = Executors.newFixedThreadPool(100);
 
-        IntStream.range(0, 1000).forEach(e -> es.submit(() -> {
+        IntStream.range(0, 1000).forEach(e -> es.execute(() -> {
 
                     synchronized (this.population) {
                         this.population.add(TSPChromosome.create(TSPUtils.CITIES));
@@ -106,13 +106,13 @@ public class TSPPopulationThread {
 
     private void doMutation() {
 
-        ExecutorService es = Executors.newFixedThreadPool(12);
+        ExecutorService es = Executors.newFixedThreadPool(100);
 
         final List<TSPChromosome> newPopluation = new ArrayList<>();
         // FOR TENTH OF POPULATION
         for (int i = 0; i < this.population.size(); i++) {
 
-            es.submit(() -> {
+            es.execute(() -> {
 
                 //GET RANDOM CHROMOSOME FROM POPULATION
                 //MUTATE IT BY RETURN A CHROMOSOME SAME BUT WITH TWO GENES SWAPPED
@@ -141,14 +141,14 @@ public class TSPPopulationThread {
 
     private void doCrossOver() {
 
-        ExecutorService es = Executors.newFixedThreadPool(12);
+        ExecutorService es = Executors.newFixedThreadPool(100);
 
         //CROSSOVER CREATES NEW LST OF CHROMOSOMES
         final List<TSPChromosome> newPopluation = new ArrayList<>();
         //FOR ALL ESTABLISHED CHROMOSOMES
         for (final TSPChromosome chromosome : this.population) {
 
-            es.submit(() -> {
+            es.execute(() -> {
 
                 //GET RANDOM PARTNER CHROMOSOME FROM POPULATION
                 final TSPChromosome partner = getCrossOverPartner(chromosome);
