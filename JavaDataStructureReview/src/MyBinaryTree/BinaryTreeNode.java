@@ -1,12 +1,16 @@
 package MyBinaryTree;
 
 
+import java.util.LinkedList;
+
 public class BinaryTreeNode implements Comparable<Integer>{
 
     private Integer _value;
 
     private BinaryTreeNode Left;
     private BinaryTreeNode Right;
+
+    private LinkedList<BinaryTreeNode> adjacent = new LinkedList<BinaryTreeNode>();
 
     public BinaryTreeNode(Integer value){
         _value = value;
@@ -43,6 +47,18 @@ public class BinaryTreeNode implements Comparable<Integer>{
     }
 
 
+    public LinkedList<BinaryTreeNode> getAdjacent() {
 
+        adjacent = new LinkedList<>();
 
+        if(getRight() != null){
+            adjacent.add(getRight());
+        }
+
+        if(getLeft() != null){
+            adjacent.add(getLeft());
+        }
+
+        return adjacent;
+    }
 }

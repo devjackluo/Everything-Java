@@ -54,7 +54,7 @@ public class BinaryTree implements Iterable<BinaryTreeNode>{
         return parent.getKey() != null;
     }
 
-    private Pair<BinaryTreeNode, BinaryTreeNode> FindWithParent(Integer value){
+    public Pair<BinaryTreeNode, BinaryTreeNode> FindWithParent(Integer value){
 
         BinaryTreeNode current = _head;
         BinaryTreeNode parent = null;
