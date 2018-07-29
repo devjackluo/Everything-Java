@@ -4,6 +4,10 @@ public class PrototypeDemo {
 
     public static void main(String[] args){
 
+        //Prototype holds a 'registry' of example items and when you want one of such item, it'll return u one of those
+        //Used to speed up application where new instances don't have to be created new every time
+
+
         Registry resgistry = new Registry();
 
 
