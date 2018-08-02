@@ -3,9 +3,12 @@ public class QuickSort {
 
     public static void main(String[] args){
 
-        int[] arr = {73,9,276,1,72,97,29,5,8,72,3,7826,279,4,7173,652,5,789,27,2,372,6,279,723,24,7,735,2769,91,42,76};
+        //int[] arr = {73,9,276,1,72,97,29,5,8,72,3,7826,279,4,7173,652,5,789,27,2,372,6,279,723,24,7,735,2769,91,42,76};
         //int[] arr = {1,2,3,4,6,11,12,2,3,4};
         //int[] arr = {11,11,2,3,1,5,6,1,3,12};
+        //int[] arr = {6,5,1,3,8,4,7,7,9,9,2};
+        int[] arr = {2,4,1,3};
+
 
         quickSort(arr);
 
@@ -61,6 +64,7 @@ public class QuickSort {
         }
 
         //return the last position where you swapped
+        //because left is the last position with the highest value to be swapped to the right
         return left;
     }
 
